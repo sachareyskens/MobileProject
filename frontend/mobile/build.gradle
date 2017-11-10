@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "pxl.be.frontend"
+        minSdkVersion 25
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildTypes {
+            release {
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                buildConfigField "String", "SERVER_URL", "\"http://tomcat.weby.be:8080/api\""
+                buildConfigField "String", "MATRIX_URL", "\"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\""
+                buildConfigField "String", "MATRIX_KEY", "\"AIzaSyBwXS2IG3a7d_906GSKh609MXJHTi2K_U0\""
+                buildConfigField "String", "GEOCODING_URL", "\"https://maps.googleapis.com/maps/api/geocode/json?latlng=\""
+                buildConfigField "String", "GEOCODING_KEY", "\"AIzaSyBwXS2IG3a7d_906GSKh609MXJHTi2K_U0\""
+            }
+            debug {
+                buildConfigField "String", "SERVER_URL", "\"http://tomcat.weby.be:8080/api\""
+                buildConfigField "String", "MATRIX_URL", "\"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins=\""
+                buildConfigField "String", "MATRIX_KEY", "\"AIzaSyBwXS2IG3a7d_906GSKh609MXJHTi2K_U0\""
+                buildConfigField "String", "GEOCODING_URL", "\"https://maps.googleapis.com/maps/api/geocode/json?latlng=\""
+                buildConfigField "String", "GEOCODING_KEY", "\"AIzaSyBwXS2IG3a7d_906GSKh609MXJHTi2K_U0\""
+            }
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+            exclude group: 'com.android.support', module: 'support-annotations'
+        })
+        compile 'com.google.code.gson:gson:2.2.4'
+        compile 'com.squareup.picasso:picasso:2.5.2'
+        compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+        compile 'com.jakewharton:butterknife:8.8.1'
+        compile 'com.github.rtoshiro.securesharedpreferences:securesharedpreferences:1.2.0'
+        annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+        testCompile 'junit:junit:4.12'
+    }
+}
